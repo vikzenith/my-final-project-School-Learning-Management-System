@@ -1,0 +1,115 @@
+{% load static %}
+
+<!-- side bar -->
+         <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+               <div id="sidebar-menu" class="sidebar-menu">
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+                     <!-- <li class="submenu active">
+                        {% url 'admin_home' as admin_home %}
+                        <a href="{{ admin_home }}" class="{% if request.path == admin_home %} active {% endif %}"><i class="fas fa-user-graduate "></i> <span> Home</span></a>
+                     </li> -->
+
+                      <li class="active">{% url 'admin_home' as admin_home %}<a href="{{ admin_home }}" class="{% if request.path == admin_home %} active {% endif %}"><i class="fa fa-home"></i><span>Home</span></a></li>
+                      
+
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Staffs</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li>{% url 'add_staff' as add_staff %}<a href="{{ add_staff }}" class="{% if request.path == add_staff %} active {% endif %}">Add Staff</a></li>
+                           <li>
+                            {% url 'manage_staff' as manage_staff %}
+                          {% url 'edit_staff' staff_id=id as edit_staff %}
+                          <a href="{% url 'manage_staff' %}" class="{% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">Manage Staff</a></li>
+                        </ul>
+                     </li>
+
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li>{% url 'add_student' as add_student %}<a href="{% url 'add_student' %}" class="{% if request.path == add_student %} active {% endif %}">Add Student</a></li>
+                           <li>
+                            {% url 'manage_student' as manage_student %}
+                            {% url 'edit_student' student_id=id as edit_student %}
+                            <a href="{% url 'manage_student' %}" class="{% if request.path == manage_student %} active {% endif %} {% if request.path == edit_student %} active {% endif %}">Manage Student</a></li>
+                        </ul>
+                     </li>
+                     
+                     <li class="submenu">
+                        <a href="#"><i class="fa-solid fa-book"></i> <span> Courses</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li>{% url 'add_course' as add_course %}<a href="{% url 'add_course' %}" class="{% if request.path == add_course %} active {% endif %}">Add Courses</a></li>
+                           <li>
+                            {% url 'manage_course' as manage_course %}
+                              {% url 'edit_course' course_id=id as edit_course %}
+                              <a href="{% url 'manage_course' %}">Manage Courses</a></li>
+                        </ul>
+                     </li>
+                     <li class="submenu">
+                        <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li>{% url 'add_subject' as add_subject %}<a href="{% url 'add_subject' %}" class="{% if request.path == add_subject %} active {% endif %}">Add Subject</a></li>
+                           <li>
+                            {% url 'manage_subject' as manage_subject %}
+                            {% url 'edit_subject' subject_id=id as edit_subject %}
+                            <a href="{% url 'manage_subject' %}" class="{% if request.path == manage_subject %} active {% endif %} {% if request.path == edit_subject %} active {% endif %} ">Manage Subject</a></li>
+                        </ul>
+                     </li>
+                     <!-- <li class="menu-title">
+                        <span>Management</span>
+                     </li> -->
+                     <li>
+                        {% url 'manage_session' as manage_session %}
+                        <a href="{% url 'manage_session' %}"><i class="fa-solid fa-bars-progress {% if request.path == manage_session %} active {% endif %}"></i> <span>Manage Session</span></a>
+                     </li>
+                     <li>
+                        {% url 'admin_send_video_staff' as admin_send_video_staff %}
+                        <a href="{% url 'admin_send_video_staff' %}"><i class="text-danger fa-solid fa-video {% if request.path == admin_send_video_staff %} active {% endif %}"></i> <span>Send Staff Video</span></a>
+                     </li>
+                     <li>
+                        {% url 'admin_send_video_student' as admin_send_video_student %}
+                        <a href="{% url 'admin_send_video_student' %}"><i class="text-danger fa-solid fa-video {% if request.path == admin_send_video_student %} active {% endif %}"></i> <span>Send Student Video</span></a>
+                     </li>
+
+                     <li class="submenu">
+                        <a href="#"><i class="fa-solid fa-comment"></i> <span> Feedback</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li>
+                            {% url 'student_feedback_message' as student_feedback_message %}
+                            <a href="{% url 'student_feedback_message' %}" class="{% if request.path == student_feedback_message %} active {% endif %}">Student Feedback</a></li>
+
+                           <li>
+                            {% url 'staff_feedback_message' as staff_feedback_message %}
+                            <a href="{% url 'staff_feedback_message' %}" class="{% if request.path == staff_feedback_message %} active {% endif %}">Staff Feedback</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                        {% url 'student_leave_view' as student_leave_view %}
+                        <a href="{% url 'student_leave_view' %}"><i class="fa fa-id-card {% if request.path == student_leave_view %} active {% endif %}"></i> <span>Student Leave</span></a>
+                     </li>
+
+                     <li>
+                        {% url 'staff_leave_view' as staff_leave_view %}
+                        <a href="{% url 'staff_leave_view' %}"><i class="fa fa-id-card {% if request.path == staff_leave_view %} active {% endif %}"></i> <span>Staff Leave</span></a>
+                     </li>
+                     <li>
+                        {% url 'admin_view_attendance' as admin_view_attendance %}
+                        <a href="{% url 'admin_view_attendance' %}"><i class="fa fa-eye {% if request.path == admin_view_attendance %} active {% endif %}"></i> <span>View Attendance</span></a>
+                     </li>
+                     <li>
+                        {% url 'admin_send_notification_staff' as admin_send_notification_staff %}
+                        <a href="{% url 'admin_send_notification_staff' %}"><i class="fa fa-bell {% if request.path == admin_send_notification_staff %} active {% endif %}"></i> <span>Send Staff Notification</span></a>
+                     </li>
+                     <li>
+                        {% url 'admin_send_notification_student' as admin_send_notification_student %}
+                        <a href="{% url 'admin_send_notification_student' %}"><i class="fa fa-bell {% if request.path == admin_send_notification_student %} active {% endif %}"></i> <span>Send Student Notification</span></a>
+                     </li>
+                     
+                     
+                    </ul>
+               </div>
+            </div>
+         </div>

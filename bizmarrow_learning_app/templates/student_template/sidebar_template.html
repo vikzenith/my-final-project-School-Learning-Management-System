@@ -1,0 +1,51 @@
+{% load static %}
+
+<!-- side bar -->
+         <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+               <div id="sidebar-menu" class="sidebar-menu">
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+
+                      <li class="active">{% url 'student_home' as student_home %}<a href="{{ student_home }}" class="nav-link {% if request.path == student_home %} active {% endif %}"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>
+
+                      <li>
+                        {% url 'student_all_video' as student_all_video %}
+                        <a href="{{ student_all_video }}"><i class="text-danger fa-solid fa-video {% if request.path == student_all_video %} active {% endif %}"></i> <span>Check Videos</span></a>
+                     </li>
+                    
+                     <li>
+                        {% url 'student_view_attendance' as student_view_attendance %}
+                        {% url 'student_view_attendance_post' as student_view_attendance_post %}
+                        <a href="{{ student_view_attendance }}" class="nav-link {% if request.path == student_view_attendance %} active {% endif %} {% if request.path == student_view_attendance_post %} active {% endif %}"><i class="fa fa-eye" aria-hidden="true"></i><span> View Attendance</span></a>
+                     </li>
+                    
+                     <li>
+                        {% url 'student_apply_leave' as student_apply_leave %}
+                        <a href="{{ student_apply_leave }}" class="nav-link {% if request.path == student_apply_leave %} active {% endif %}"><i class="fa fa-id-card" aria-hidden="true"></i> <span> Apply Leave</span></a>
+                     </li>
+
+                    
+                     <li>
+                        {% url 'student_feedback' as student_feedback %}
+                        <a href="{{ student_feedback }}" class="nav-link {% if request.path == student_feedback %} active {% endif %}"><i class="fa fa-comments" aria-hidden="true"></i> <span>Feedback Message</span></a>
+                     </li>
+
+
+                     
+                     <li>
+                        {% url 'student_view_result' as student_view_result %}
+                        <a href="{{ student_view_result }}" class="nav-link {% if request.path == student_view_result %} active {% endif %}"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <span>
+                            Grade Card</span></a>
+                     </li>
+                     <li>
+                        {% url 'student_all_notification' as student_all_notification %}
+                        <a href="{{ student_all_notification }}" class="nav-link {% if request.path == student_all_notification %} active {% endif %}"><i class="fa fa-bell" aria-hidden="true"></i> <span>Notifications</span></a>
+                     </li>
+                     
+                    </ul>
+               </div>
+            </div>
+         </div>

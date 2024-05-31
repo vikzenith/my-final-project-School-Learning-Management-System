@@ -1,0 +1,135 @@
+{% extends 'hod_template/base_template.html' %}
+{% block page_title %}
+Send Staff Video
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Staff</h3>
+
+                <!-- <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for staff in staffs %}
+                    <tr>
+                      <td>{{ staff.admin.id }}</td>
+                      <td>{{ staff.admin.first_name }}</td>
+                      <td>{{ staff.admin.last_name }}</td>
+                      <td>{{ staff.admin.username }}</td>
+                      <td>{{ staff.admin.email }}</td>
+                      <td><a href="#" class="btn btn-danger show_notification" data-toggle="modal" data-target="#myModal">Send Video</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Send <span class="btn-danger">Video</span> to <span id="name_span"></span></h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Enter thumbnail</label>
+            <input type="file" name="thumbnail" class="form-control" placeholder="Enter thumbnail" id="thumbnail_not"><br>
+            <input type="url" name="url" class="form-control" placeholder="Enter video link" id="url_not"><br>
+            <input type="text" name="message" class="form-control" placeholder="Enter video Title" id="message_not"><br>
+            <textarea name="description" id="desc_not" cols="30" class="form-control" placeholder="Enter video description"></textarea><br>
+             <input type="hidden" name="student_id" class="form-control" id="student_id">
+          </div>
+          <div class="form-group">
+            <button class="btn sendBtn btn-info btn-block send_video_btn"  type="button">Send Video</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    .sendBtn:hover{
+        background-color: rgb(230, 28, 28); 
+        color: white;
+    }
+  </style>
+{% endblock main_content %}
+{% block custom_js %}
+<script>
+  $(".show_notification").click(function(){
+      var student_id=$(this).parents("tr").children("td:eq(0)").text();
+      var student_name=$(this).parents("tr").children("td:eq(3)").text();
+      console.log(student_id);
+      $("#student_id").val(student_id);
+      $("#name_span").text(student_name);
+
+  });
+
+  $(".send_video_btn").click(function(){
+      var id=$("#student_id").val();
+      var thumbnail=$("#thumbnail_not").val();
+      var url=$("#url_not").val();
+      var message=$("#message_not").val();
+      var description=$("#desc_not").val();
+      sendVideo(id,thumbnail,url,message,description);
+  });
+  
+  function sendVideo(id,thumbnail,url,message,description){
+           $.ajax({
+            url:"{% url 'send_staff_video' %}",
+            type:'POST',
+            data:{id:id,thumbnail:thumbnail,url:url,message:message,description:description},
+        })
+        .done(function(response){
+            if(response=="True"){
+                alert("Video Sent Successfully");
+            }
+            else{
+                alert("Failed to Send Video");
+            }
+        });
+  }
+</script>
+{% endblock custom_js %}

@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: akorvikkyy@gmail.com
+Date: Mon, 18 Dec 2023 00:02:28 -0000
+Message-ID: <170285774855.11152.15139682518272351483@Victor-Akor-Godwin>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/Mg/bzdpk3-841e4bf958a5e47e0001bb0743926237/
+
+Your username, in case you’ve forgotten: VictorGodwin
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
